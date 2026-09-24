@@ -1,0 +1,5 @@
+# Default LoCoMo benchmark configuration.
+# Applies to all methods unless overridden by method-specific config.
+max_model_length: 32768
+max_response_tokens: 4096
+chars_per_token: 4

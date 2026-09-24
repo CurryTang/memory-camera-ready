@@ -1,0 +1,61 @@
+# LLM provider configuration
+llm:
+  provider: "openai"
+  api_key: "EMPTY"
+  base_url: "http://localhost:8000/v1"
+  model: "Qwen/Qwen3-32B"
+  temperature: 0
+  max_tokens: 4096
+
+# Embedding provider configuration
+embedding:
+  provider: "openai"
+  api_key: "EMPTY"
+  base_url: "http://localhost:8001/v1"
+  model: "text-embedding-3-large"
+  max_text_len: 4096
+
+# Memory system configuration
+memory:
+  build_strategy: "trajectory"
+  retrieve_strategy: "query"
+  update_strategy: "adjustment"
+  k_retrieve: 5
+  max_keywords: 8
+  confidence_threshold: 0.0
+  memory_confidence: 100.0
+  add_similarity_threshold: 0.90
+  user_id: "hotpotqa_memrl"
+  sim_norm_mean: 0.5187
+  sim_norm_std: 0.1203
+
+experiment:
+  random_seed: 42
+  enable_value_driven: false
+  experiment_name: "hotpotqa_memrl"
+  mode: "test"
+  batch_size: 8
+  output_dir: "./results"
+  save_trajectories: true
+  save_memories: true
+  ckpt_eval_enabled: false
+  ckpt_eval_path: ""
+  ckpt_resume_enabled: false
+  ckpt_resume_path: ""
+  ckpt_resume_epoch: null
+
+rl_config:
+  epsilon: 0
+  tau: 0.62
+  alpha: 0.3
+  gamma: 0.0
+  q_init_pos: 0
+  q_init_neg: 0
+  success_reward: 1.0
+  failure_reward: -1.0
+  topk: 3
+  novelty_threshold: 0.85
+  recency_boost: 0.0
+  reward_merge_gain: 0.1
+  weight_sim: 0.5
+  weight_q: 0.5

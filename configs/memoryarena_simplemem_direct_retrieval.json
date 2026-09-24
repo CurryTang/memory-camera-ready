@@ -1,0 +1,10 @@
+{
+  "enable_thinking": false,
+  "enable_planning": false,
+  "enable_reflection": false,
+  "max_reflection_rounds": 0,
+  "enable_parallel_processing": true,
+  "max_parallel_workers": 2,
+  "enable_parallel_retrieval": false,
+  "max_retrieval_workers": 1
+}

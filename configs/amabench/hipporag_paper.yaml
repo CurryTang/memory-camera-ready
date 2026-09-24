@@ -1,0 +1,15 @@
+# Paper-backed HippoRAGv2 settings for AMABench replication.
+#
+# Source:
+# - appendix.tex: linking_top_k=5, retrieval_top_k=200, QA top 5 passages
+# - AMABench replication backbone: Qwen3-Embedding-4B for dense retrieval
+top_k: 5
+chunk_turns: 1
+retrieval_top_k: 200
+linking_top_k: 5
+# Uses Qwen3-Embedding-4B via OpenAI-compatible sglang embed server.
+# Monkey-patched in hipporag.py to accept non-standard model names.
+embedding_model: "Qwen3-Embedding-4B"
+# embedding_base_url is set per-host via CLI (--embed-base-url) so this
+# YAML stays portable.
+# embedding_base_url: "http://localhost:30001/v1"

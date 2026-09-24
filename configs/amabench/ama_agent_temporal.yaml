@@ -1,0 +1,7 @@
+retrieval_mode: "embed"
+top_k: 5
+neighbor_radius: 2
+chunk_size: 8192
+causal: true
+enable_tools: true
+temperature: 0

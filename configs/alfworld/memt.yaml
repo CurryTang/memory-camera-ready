@@ -1,0 +1,11 @@
+# Mem-T settings for ALFWorld cross-episode memory.
+# Mem-T uses 4 typed memory stores: working, factual, experiential, raw.
+# Retrieval searches across: experiences, facts, summary, turns.
+llm_model: qwen/qwen3-32b
+retrieval_topk: 5
+collections_search_order:
+  - experiences
+  - facts
+  - summary
+  - turns
+per_collection_topk: 3

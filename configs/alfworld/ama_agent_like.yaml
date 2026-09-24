@@ -1,0 +1,8 @@
+retrieval_mode: embed
+top_k: 4
+neighbor_radius: 1
+chunk_size: 4096
+causal: true
+enable_tools: true
+temperature: 0.0
+max_tokens: 2048

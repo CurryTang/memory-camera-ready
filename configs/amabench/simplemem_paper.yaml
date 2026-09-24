@@ -1,0 +1,33 @@
+# Paper-backed SimpleMem settings for AMABench replication.
+#
+# Source:
+# - sliding-window atomic memory extraction with planning + reflection
+# - parallel memory building with 2 workers
+# - parallel retrieval with 3 workers
+# - reflection enabled for up to 2 rounds
+enable_planning: true
+# 2026-05-08: paper says "up to 2 rounds" — we use 1 (within spec). With 2
+# rounds, a single question takes 9 retrieval LLM calls (planning ×3 +
+# round1 ×3 + round2 ×3) → ~21 min/ep × 30 eps = 10+ hr/cell. 1 round cuts
+# the round-2 chain entirely (~6 LLM calls/question, ~10-12 min/ep) which
+# fits the salloc budget while still doing intelligent retrieval refinement.
+# Documented deviation in the headline-table footnote.
+enable_reflection: true
+max_reflection_rounds: 1
+# Parallel: 2 build-workers (paper default), 4 retrieval-workers (bump from
+# paper's 3 — sglang easily handles 4 concurrent 32K-context requests on
+# Qwen3-32B at mem-fraction 0.70).
+enable_parallel_processing: true
+max_parallel_workers: 2
+enable_parallel_retrieval: true
+max_retrieval_workers: 4
+# Disable streaming for compatibility with local sglang servers
+use_streaming: false
+# AMABench-Web observations can be long enough that the upstream default
+# 40-dialogue SimpleMem extraction window exceeds a 32K-token Qwen context.
+# Eight turns keeps construction inside the model window without changing the
+# retrieval or reflection stack.
+window_size: 8
+# LLM/Embedding endpoints — override via CLI flags or env vars
+# llm_base_url: http://localhost:8000/v1
+# embedding_base_url: http://localhost:8001/v1

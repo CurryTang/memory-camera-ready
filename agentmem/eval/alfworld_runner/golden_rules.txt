@@ -1,0 +1,66 @@
+GOLDEN RULES for ALFWorld. These rules summarize what wins ALFWorld games. Apply them at every step.
+
+[Output format]
+- Each turn, emit exactly one admissible env command. No explanations, no prose, no commentary inside the action. Reasoning may appear in your Thought, but the Action line must be a single command verb.
+
+[Loop avoidance — IMPORTANT]
+- If your last observation is identical (or near-identical) to the previous one, the previous action did NOT change the world. Do NOT repeat the previous action. Switch verb or switch location.
+- Never emit `look` or `examine X` more than twice in any 5-step window. Use `inventory` at most once per receptacle context.
+- If you have already opened a receptacle and seen its contents, do not re-open or re-examine it. Move on.
+
+[Task recipes — apply the one that matches your task]
+
+Recipe HOT (task: "put a hot X in Y" or "heat some X and put it in Y"):
+  step 1: locate and `take X from <wherever>`
+  step 2: `go to microwave 1` (if microwave is in the room) else `go to stoveburner 1`
+  step 3: `heat X with microwave 1` (or `heat X with stoveburner N`)
+  step 4: `go to Y`
+  step 5: `put X in/on Y`  (or `move X to Y` — whichever is in admissible actions)
+
+Recipe COOL (task: "put a cool X in Y" or "cool some X and put it in Y"):
+  step 1: `take X from <wherever>`
+  step 2: `go to fridge 1`
+  step 3: `cool X with fridge 1`
+  step 4: `go to Y`
+  step 5: `put X in/on Y`
+
+Recipe CLEAN (task: "put a clean X in Y" or "clean some X and put it in Y"):
+  step 1: `take X from <wherever>`
+  step 2: `go to sinkbasin 1`
+  step 3: `clean X with sinkbasin 1`
+  step 4: `go to Y`
+  step 5: `put X in/on Y`
+
+Recipe LOOK (task: "look at X under the desklamp" or "examine the X with the desklamp"):
+  step 1: locate X and `take X` (X MUST be in your inventory)
+  step 2: `go to desklamp 1`
+  step 3: `use desklamp 1`
+  CRITICAL: never `use desklamp` while empty-handed. The lamp only counts if X is in inventory when you activate it.
+
+Recipe TWO (task: "put two X in Y" or "find two X and put them in Y"):
+  step 1: locate first X (e.g. X 1), `take X 1`, `go to Y`, `put X 1 in/on Y`
+  step 2: locate a DIFFERENT instance (X 2, must be a different id), `take X 2`, `go to Y`, `put X 2 in/on Y`
+
+Recipe PLACE (task: "put a X in Y" or "put some X on Y" — no transform):
+  step 1: locate X, `take X`
+  step 2: `go to Y`
+  step 3: `put X in/on Y`
+
+[Object-location priors — SEARCH ORDER]
+Before opening generic cabinets/drawers, try these object→location priors. Visit in the listed order:
+- apple, lettuce, tomato, egg, potato, bread, winebottle: fridge 1, countertop, sinkbasin
+- mug, cup: coffeemachine 1, sinkbasin 1, countertop, cabinet 1
+- bowl, plate, pot, pan: cabinet 1..N, countertop, stoveburner, sinkbasin
+- knife, fork, spoon, spatula, ladle, butterknife, dishsponge: drawer 1..N, countertop, sinkbasin
+- cloth, soapbar, toiletpaper, spraybottle, candle: cabinet 1..N, countertop, toilet, garbagecan, sidetable
+- pillow, book, laptop, pen, pencil, cd, creditcard, keychain, remotecontrol, alarmclock, statue, vase, box, watch: desk 1, bed 1, sidetable 1, drawer 1..N, dresser, shelf
+- newspaper: sofa, sidetable, shelf, coffeetable
+
+[Place-verb syntax — IMPORTANT]
+- The final action of any task is a placement: `put X in Y`, `put X on Y`, or `move X to Y`.
+- It is NOT `open Y` and NOT `examine Y`. Once you arrive at Y holding X, place immediately.
+- If the admissible action set shows `move X to Y`, use that; otherwise use `put X in/on Y`.
+
+[Efficiency budget]
+- You have 50 steps total. Spend at most 15 on search, at most 5 on the transform op, at most 5 on placement. Anything else is waste.
+- If a receptacle is empty or doesn't contain the target, leave immediately — do NOT linger or re-examine.

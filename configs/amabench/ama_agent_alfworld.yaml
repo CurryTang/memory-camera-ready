@@ -1,0 +1,16 @@
+# AMA-Agent AMABench ALFWorld profile.
+# Hypothesis-only profile: keep procedural coverage while trimming graph spillover.
+retrieval_mode: "embed"
+top_k: 8
+retrieval_prefilter_k: 24
+chunk_size: 8192
+causal: true
+causal_graph_max_edges: 24
+enable_tools: true
+tool_retrieval_scope: "full"
+tool_retrieval_prefilter_k: null
+tool_retrieval_max_results: 8
+prepend_objective: true
+temperature: 0
+max_tokens: 16384
+context_guardrail: "Answer only with facts directly supported by the retrieved state memory, retrieved turns, graph nodes, or code output. Do not add unstated details."

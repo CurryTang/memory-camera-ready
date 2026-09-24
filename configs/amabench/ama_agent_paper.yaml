@@ -1,0 +1,12 @@
+# Paper-backed AMA-Agent settings for AMABench replication.
+#
+# Source:
+# - experiment.tex: Qwen3-4B-embedding for causality-graph retrieval, K=5
+# - method.tex: similarity retrieval + tool-augmented search over causality graph
+retrieval_mode: "embed"
+top_k: 5
+chunk_size: 8192
+causal: true
+enable_tools: true
+temperature: 0
+max_tokens: 16384

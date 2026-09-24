@@ -1,0 +1,10 @@
+# PlugMem settings for ALFWorld cross-episode memory.
+# source_root is resolved relative to the project root at runtime.
+llm_model: qwen/qwen3-32b
+top_k: 20
+source_root: vendor/plugmem
+memory_modes:
+  - semantic
+  - episodic
+  - procedural
+embedding_model: Qwen3-Embedding-4B

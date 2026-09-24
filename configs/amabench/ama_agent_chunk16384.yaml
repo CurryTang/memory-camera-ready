@@ -1,0 +1,13 @@
+# Larger AMA-Agent construction budget for long trajectories.
+#
+# Rationale:
+# - paper-faithful retrieval still underperformed on the first 4 smoke episodes
+# - long Crafter episodes spent >300s in memory construction
+# - a larger chunk budget reduces lossy multi-pass compression while staying
+#   well within the served Qwen3-32B context window
+retrieval_mode: "embed"
+top_k: 5
+chunk_size: 16384
+causal: true
+enable_tools: true
+temperature: 0

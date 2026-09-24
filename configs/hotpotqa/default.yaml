@@ -1,0 +1,5 @@
+# Default HotpotQA benchmark configuration.
+# Uses distractor setting: 10 paragraphs per question, 2 gold.
+max_model_length: 16384
+max_response_tokens: 512
+chars_per_token: 4

@@ -1,0 +1,18 @@
+# Conservative LightMem defaults for procedural AMABench RQ1 trajectories.
+retrieve_limit: 8
+pre_compress: false
+topic_segment: false
+precomp_topic_shared: false
+messages_use: hybrid
+metadata_generate: false
+text_summary: false
+extract_threshold: 0.1
+extraction_mode: event
+construct_update_queue: true
+offline_update: false
+update_queue_top_k: 8
+update_queue_keep_top_n: 4
+update_score_threshold: 0.8
+llm_max_tokens: 4096
+max_turns: 180
+direct_store_when_unsegmented: true

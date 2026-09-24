@@ -1,0 +1,15 @@
+# LightMem settings for ALFWorld cross-episode memory.
+retrieve_limit: 6
+pre_compress: true
+topic_segment: true
+precomp_topic_shared: true
+messages_use: hybrid
+metadata_generate: true
+text_summary: true
+extract_threshold: 0.1
+extraction_mode: event
+construct_update_queue: true
+offline_update: true
+update_queue_top_k: 20
+update_queue_keep_top_n: 10
+update_score_threshold: 0.8

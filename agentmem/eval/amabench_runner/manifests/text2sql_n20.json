@@ -1,0 +1,35 @@
+{
+  "domain": "TEXT2SQL",
+  "task_type": "spider2",
+  "n": 20,
+  "stratify": "success",
+  "stratify_breakdown": {
+    "success": 9,
+    "failure": 11
+  },
+  "pool_success_rate": 0.4706,
+  "seed": 42,
+  "source": "datasets/amabench/open_end_qa_set_medium.jsonl",
+  "episode_ids": [
+    97,
+    102,
+    103,
+    106,
+    111,
+    112,
+    115,
+    116,
+    118,
+    120,
+    122,
+    124,
+    125,
+    126,
+    129,
+    130,
+    132,
+    133,
+    137,
+    140
+  ]
+}
